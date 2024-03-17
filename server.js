@@ -8,6 +8,12 @@ const mongoDB = require("./db");
 const UserRoutes = require("./routes/UserRoutes");
 const TodoRoutes = require("./routes/TodoRoutes");
 mongoDB();
+const path = require("path");
+
+// After your API routes
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "/client/public/index.html"));
+});
 
 app.get("/", (req, res) => {
   app.use(express.static(path.resolve(__dirname, "client", "build")));
